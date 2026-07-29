@@ -1,0 +1,46 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace POE_Rich_Mtk_Asiphe_Louw
+{
+    internal class Position
+    {
+        private int x;
+        private int y;
+
+        public void startPosition(int newX, int newY)
+        {
+            x = newX;
+            y = newY;
+        }
+
+        public int xPosition
+        {
+            get
+            {
+                return x;
+            }
+
+            set
+            {
+                x = value;
+            }
+        }
+
+        public int yPosition
+        {
+            get
+            {
+                return y;
+            }
+
+            set
+            {
+                y = value;
+            }
+        }
+    }
+}
