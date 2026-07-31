@@ -10,7 +10,6 @@ namespace POE_Rich_Mtk_Asiphe_Louw
     {
         public EmptyTile(Position startPosition) : base(startPosition)
         {
-            
         }
 
         public override char Display
