@@ -8,10 +8,10 @@ namespace POE_Rich_Mtk_Asiphe_Louw
 {
     internal class Position
     {
-        private int x;
-        private int y;
+        private static int x;
+        private static int y;
 
-        public void startPosition(int newX, int newY)
+        public Position(int newX, int newY)
         {
             x = newX;
             y = newY;

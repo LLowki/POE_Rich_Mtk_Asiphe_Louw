@@ -8,9 +8,11 @@ namespace POE_Rich_Mtk_Asiphe_Louw
 {
     abstract class Tile
     {
-        private Position tilePosition;
+        private static Position tilePosition = new Position(y, x);
+        private static int x;
+        private static int y;
 
-        public void tileConstructor(Position startPosition)
+        public Tile(Position startPosition)
         {
             tilePosition = startPosition;
         }

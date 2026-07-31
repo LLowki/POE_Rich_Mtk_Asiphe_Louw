@@ -8,9 +8,9 @@ namespace POE_Rich_Mtk_Asiphe_Louw
 {
     internal class EmptyTile : Tile
     {
-        public void emptyConstructor(Position startPosition)
+        public EmptyTile(Position startPosition) : base(startPosition)
         {
-            tileConstructor(startPosition);
+            
         }
 
         public override char Display
