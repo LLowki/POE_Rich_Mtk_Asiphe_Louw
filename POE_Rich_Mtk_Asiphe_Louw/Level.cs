@@ -8,7 +8,7 @@ namespace POE_Rich_Mtk_Asiphe_Louw
 {
     internal class Level
     {
-        private static Tile[,] levelLayout;
+        private static Tile[,] levelLayout = new Tile[heightLayout, widthLayout];
         private static int widthLayout;
         private static int heightLayout;
 
@@ -17,27 +17,26 @@ namespace POE_Rich_Mtk_Asiphe_Louw
             widthLayout = newWidth;
             heightLayout = newHeight;
 
-            Tile[,] levelLayout = new Tile[newHeight, newWidth];
             InitializeTiles();
         }
 
         public enum TileType
         {
-            Empty,
-            Temp
+            Empty
         }
 
         private static Tile CreateTile(TileType newType, Position newPosition)
         {
             Tile sentTile = new EmptyTile(newPosition);
+            Tile newTile = new EmptyTile(newPosition);
 
             switch (newType)
             {
                 case TileType.Empty:
-                    sentTile = new EmptyTile(newPosition);
-                    levelLayout[newPosition.yPosition, newPosition.xPosition] = sentTile;
+                    sentTile = newTile;
                     break;
             }
+
 
             return sentTile;
         }
@@ -49,11 +48,11 @@ namespace POE_Rich_Mtk_Asiphe_Louw
             TileType initialTile = TileType.Empty;
             Position intitialPosition = new Position(o, i);
 
-            while (o <= heightLayout)
+            while (o < heightLayout)
             {
-                if (i <= widthLayout)
+                if (i < widthLayout)
                 {
-                    CreateTile(initialTile, intitialPosition);
+                    levelLayout[o, i] = CreateTile(initialTile, intitialPosition);
                     i++;
                 }
                 else if (i > widthLayout)

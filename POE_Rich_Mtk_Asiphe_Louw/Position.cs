@@ -8,25 +8,25 @@ namespace POE_Rich_Mtk_Asiphe_Louw
 {
     internal class Position
     {
-        private static int x;
-        private static int y;
+        private static int xCoord;
+        private static int yCoord;
 
         public Position(int newY, int newX)
         {
-            x = newX;
-            y = newY;
+            xCoord = newX;
+            yCoord = newY;
         }
 
         public int xPosition
         {
             get
             {
-                return x;
+                return xCoord;
             }
 
             set
             {
-                x = value;
+                xCoord = value;
             }
         }
 
@@ -34,12 +34,12 @@ namespace POE_Rich_Mtk_Asiphe_Louw
         {
             get
             {
-                return y;
+                return yCoord;
             }
 
             set
             {
-                y = value;
+                yCoord = value;
             }
         }
     }
