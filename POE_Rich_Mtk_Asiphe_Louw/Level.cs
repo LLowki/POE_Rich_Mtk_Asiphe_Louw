@@ -8,14 +8,14 @@ namespace POE_Rich_Mtk_Asiphe_Louw
 {
     internal class Level
     {
-        private static Tile[,] levelLayout = new Tile[heightLayout, widthLayout];
-        private static int widthLayout;
-        private static int heightLayout;
+        private static Tile[,] levelLayout;
+        private static int widthLayout = 0;
+        private static int heightLayout = 0;
 
         public Level(int newHeight, int newWidth)
         {
             widthLayout = newWidth;
-            heightLayout = newHeight;
+            heightLayout = newHeight; levelLayout = new Tile[heightLayout, widthLayout];
 
             InitializeTiles();
         }
@@ -43,22 +43,14 @@ namespace POE_Rich_Mtk_Asiphe_Louw
 
         public static void InitializeTiles()
         {
-            int i = 0;
-            int o = 0;
             TileType initialTile = TileType.Empty;
-            Position intitialPosition = new Position(o, i);
 
-            while (o < heightLayout)
+            for (int y = 0; y < heightLayout; y++)
             {
-                if (i < widthLayout)
+                for (int x = 0; x < widthLayout; x++)
                 {
-                    levelLayout[o, i] = CreateTile(initialTile, intitialPosition);
-                    i++;
-                }
-                else if (i > widthLayout)
-                {
-                    i = 0;
-                    o++;
+                    Position intitialPosition = new Position(y, x);
+                    levelLayout[y, x] = CreateTile(initialTile, intitialPosition);
                 }
             }
         }
@@ -69,14 +61,14 @@ namespace POE_Rich_Mtk_Asiphe_Louw
             int o = 0;
             string writtenLayout = "";
 
-            while (o <= heightLayout)
+            while (o < heightLayout)
             {
-                if (i <= widthLayout)
+                if (i < widthLayout)
                 {
                     writtenLayout = writtenLayout + levelLayout[o, i].Display;
                     i++;
                 }
-                else if (i > widthLayout)
+                else if (i >= widthLayout)
                 {
                     writtenLayout = writtenLayout + "\n";
                     i = 0;
