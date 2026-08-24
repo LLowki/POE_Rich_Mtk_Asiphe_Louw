@@ -9,6 +9,7 @@ namespace POE_Rich_Mtk_Asiphe_Louw
         private int width;
         private int height;
         private HeroTile hero;
+        private ExitTile exit;
         private Random random;
 
         public Tile[,] Tiles
@@ -19,6 +20,11 @@ namespace POE_Rich_Mtk_Asiphe_Louw
         public HeroTile Hero
         {
             get { return hero; }
+        }
+
+        public ExitTile Exit
+        {
+            get { return exit; }
         }
 
         public Level(int width, int height, HeroTile hero = null)
@@ -43,6 +49,9 @@ namespace POE_Rich_Mtk_Asiphe_Louw
                 this.hero = hero;
             }
 
+            Position exitPosition = GetRandomEmptyPosition();
+            exit = (ExitTile)CreateTile(TileType.Exit, exitPosition);
+
             this.hero.UpdateVision(this);
         }
 
@@ -50,7 +59,8 @@ namespace POE_Rich_Mtk_Asiphe_Louw
         {
             Empty,
             Wall,
-            Hero
+            Hero,
+            Exit
         }
 
         private Tile CreateTile(TileType tileType, Position position)
@@ -67,6 +77,9 @@ namespace POE_Rich_Mtk_Asiphe_Louw
                     break;
                 case TileType.Hero:
                     tile = new HeroTile(position);
+                    break;
+                case TileType.Exit:
+                    tile = new ExitTile(position);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(tileType));
