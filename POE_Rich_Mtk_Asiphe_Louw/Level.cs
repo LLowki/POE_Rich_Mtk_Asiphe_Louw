@@ -20,7 +20,8 @@ namespace POE_Rich_Mtk_Asiphe_Louw
 
         private enum TileType
         {
-            Empty
+            Empty,
+            Wall
         }
 
         private Tile CreateTile(TileType tileType, Position position)
@@ -31,6 +32,9 @@ namespace POE_Rich_Mtk_Asiphe_Louw
             {
                 case TileType.Empty:
                     tile = new EmptyTile(position);
+                    break;
+                case TileType.Wall:
+                    tile = new WallTile(position);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(tileType));
@@ -46,7 +50,9 @@ namespace POE_Rich_Mtk_Asiphe_Louw
             {
                 for (int x = 0; x < width; x++)
                 {
-                    CreateTile(TileType.Empty, new Position(x, y));
+                    bool isBoundary = x == 0 || x == width - 1 || y == 0 || y == height - 1;
+                    TileType tileType = isBoundary ? TileType.Wall : TileType.Empty;
+                    CreateTile(tileType, new Position(x, y));
                 }
             }
         }
