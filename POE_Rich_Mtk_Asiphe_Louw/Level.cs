@@ -9,6 +9,11 @@ namespace POE_Rich_Mtk_Asiphe_Louw
         private int width;
         private int height;
 
+        public Tile[,] Tiles
+        {
+            get { return tiles; }
+        }
+
         public Level(int width, int height)
         {
             this.width = width;
