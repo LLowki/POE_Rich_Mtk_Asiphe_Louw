@@ -1,81 +1,71 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+using System;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace POE_Rich_Mtk_Asiphe_Louw
 {
     internal class Level
     {
-        private static Tile[,] levelLayout;
-        private static int widthLayout = 0;
-        private static int heightLayout = 0;
+        private Tile[,] tiles;
+        private int width;
+        private int height;
 
-        public Level(int newHeight, int newWidth)
+        public Level(int width, int height)
         {
-            widthLayout = newWidth;
-            heightLayout = newHeight; levelLayout = new Tile[heightLayout, widthLayout];
+            this.width = width;
+            this.height = height;
+            tiles = new Tile[width, height];
 
-            InitializeTiles();
+            InitialiseTiles();
         }
 
-        public enum TileType
+        private enum TileType
         {
             Empty
         }
 
-        private static Tile CreateTile(TileType newType, Position newPosition)
+        private Tile CreateTile(TileType tileType, Position position)
         {
-            Tile sentTile = new EmptyTile(newPosition);
-            Tile newTile = new EmptyTile(newPosition);
+            Tile tile;
 
-            switch (newType)
+            switch (tileType)
             {
                 case TileType.Empty:
-                    sentTile = newTile;
+                    tile = new EmptyTile(position);
                     break;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(tileType));
             }
 
-
-            return sentTile;
+            tiles[position.X, position.Y] = tile;
+            return tile;
         }
 
-        public static void InitializeTiles()
+        private void InitialiseTiles()
         {
-            TileType initialTile = TileType.Empty;
-
-            for (int y = 0; y < heightLayout; y++)
+            for (int y = 0; y < height; y++)
             {
-                for (int x = 0; x < widthLayout; x++)
+                for (int x = 0; x < width; x++)
                 {
-                    Position intitialPosition = new Position(y, x);
-                    levelLayout[y, x] = CreateTile(initialTile, intitialPosition);
+                    CreateTile(TileType.Empty, new Position(x, y));
                 }
             }
         }
 
         public override string ToString()
         {
-            int i = 0;
-            int o = 0;
-            string writtenLayout = "";
+            StringBuilder levelDisplay = new StringBuilder();
 
-            while (o < heightLayout)
+            for (int y = 0; y < height; y++)
             {
-                if (i < widthLayout)
+                for (int x = 0; x < width; x++)
                 {
-                    writtenLayout = writtenLayout + levelLayout[o, i].Display;
-                    i++;
+                    levelDisplay.Append(tiles[x, y].Display);
                 }
-                else if (i >= widthLayout)
-                {
-                    writtenLayout = writtenLayout + "\n";
-                    i = 0;
-                    o++;
-                }
+
+                levelDisplay.Append('\n');
             }
-            return writtenLayout;
+
+            return levelDisplay.ToString();
         }
     }
 }

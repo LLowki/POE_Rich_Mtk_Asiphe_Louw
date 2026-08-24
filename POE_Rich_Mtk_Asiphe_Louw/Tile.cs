@@ -1,39 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace POE_Rich_Mtk_Asiphe_Louw
 {
-    abstract class Tile
+    internal abstract class Tile
     {
-        private static Position tilePosition = new Position(y, x);
-        private static int x;
-        private static int y;
+        private Position position;
 
-        public Tile(Position startPosition)
+        protected Tile(Position position)
         {
-            tilePosition = startPosition;
+            this.position = position;
         }
 
-        public int xTile
+        public int X
         {
-            get
-            {
-                return tilePosition.xPosition;
-            }
+            get { return position.X; }
         }
 
-        public int yTile
+        public int Y
         {
-            get
-            {
-                return tilePosition.yPosition;
-            }
+            get { return position.Y; }
         }
-
-
 
         public abstract char Display
         {
