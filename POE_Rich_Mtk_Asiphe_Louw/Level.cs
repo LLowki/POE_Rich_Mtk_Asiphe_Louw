@@ -104,6 +104,18 @@ namespace POE_Rich_Mtk_Asiphe_Louw
             return new Position(x, y);
         }
 
+        public void SwapTiles(Tile firstTile, Tile secondTile)
+        {
+            Position firstPosition = firstTile.Position;
+            Position secondPosition = secondTile.Position;
+
+            tiles[firstPosition.X, firstPosition.Y] = secondTile;
+            tiles[secondPosition.X, secondPosition.Y] = firstTile;
+
+            firstTile.Position = secondPosition;
+            secondTile.Position = firstPosition;
+        }
+
         public override string ToString()
         {
             StringBuilder levelDisplay = new StringBuilder();

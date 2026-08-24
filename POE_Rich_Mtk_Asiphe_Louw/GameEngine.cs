@@ -21,6 +21,31 @@ namespace POE_Rich_Mtk_Asiphe_Louw
             currentLevel = new Level(width, height);
         }
 
+        private bool MoveHero(Direction direction)
+        {
+            if (direction == Direction.None)
+            {
+                return false;
+            }
+
+            HeroTile hero = currentLevel.Hero;
+            Tile targetTile = hero.Vision[(int)direction];
+
+            if (!(targetTile is EmptyTile))
+            {
+                return false;
+            }
+
+            currentLevel.SwapTiles(hero, targetTile);
+            hero.UpdateVision(currentLevel);
+            return true;
+        }
+
+        public void TriggerMovement(Direction direction)
+        {
+            MoveHero(direction);
+        }
+
         public override string ToString()
         {
             return currentLevel.ToString();
