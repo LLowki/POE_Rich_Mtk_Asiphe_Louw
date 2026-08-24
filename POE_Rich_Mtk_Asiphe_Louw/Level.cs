@@ -8,25 +8,49 @@ namespace POE_Rich_Mtk_Asiphe_Louw
         private Tile[,] tiles;
         private int width;
         private int height;
+        private HeroTile hero;
+        private Random random;
 
         public Tile[,] Tiles
         {
             get { return tiles; }
         }
 
-        public Level(int width, int height)
+        public HeroTile Hero
+        {
+            get { return hero; }
+        }
+
+        public Level(int width, int height, HeroTile hero = null)
         {
             this.width = width;
             this.height = height;
             tiles = new Tile[width, height];
+            random = new Random();
 
             InitialiseTiles();
+
+            Position heroPosition = GetRandomEmptyPosition();
+
+            if (hero == null)
+            {
+                this.hero = (HeroTile)CreateTile(TileType.Hero, heroPosition);
+            }
+            else
+            {
+                hero.Position = heroPosition;
+                tiles[heroPosition.X, heroPosition.Y] = hero;
+                this.hero = hero;
+            }
+
+            this.hero.UpdateVision(this);
         }
 
         private enum TileType
         {
             Empty,
-            Wall
+            Wall,
+            Hero
         }
 
         private Tile CreateTile(TileType tileType, Position position)
@@ -40,6 +64,9 @@ namespace POE_Rich_Mtk_Asiphe_Louw
                     break;
                 case TileType.Wall:
                     tile = new WallTile(position);
+                    break;
+                case TileType.Hero:
+                    tile = new HeroTile(position);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(tileType));
@@ -60,6 +87,21 @@ namespace POE_Rich_Mtk_Asiphe_Louw
                     CreateTile(tileType, new Position(x, y));
                 }
             }
+        }
+
+        private Position GetRandomEmptyPosition()
+        {
+            int x;
+            int y;
+
+            do
+            {
+                x = random.Next(0, width);
+                y = random.Next(0, height);
+            }
+            while (!(tiles[x, y] is EmptyTile));
+
+            return new Position(x, y);
         }
 
         public override string ToString()

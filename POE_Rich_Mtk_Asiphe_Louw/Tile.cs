@@ -9,6 +9,12 @@ namespace POE_Rich_Mtk_Asiphe_Louw
             this.position = position;
         }
 
+        public Position Position
+        {
+            get { return position; }
+            set { position = value; }
+        }
+
         public int X
         {
             get { return position.X; }
