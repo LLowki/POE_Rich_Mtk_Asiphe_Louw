@@ -3,9 +3,9 @@ using System.Text;
 
 namespace POE_Rich_Mtk_Asiphe_Louw
 {
-    internal class Level
+    internal class Level                        //Level Class to create and display the game levels
     {
-        private Tile[,] tiles;
+        private Tile[,] tiles;                  //2D tile class array for the level layout
         private int width;
         private int height;
         private HeroTile hero;
@@ -27,14 +27,14 @@ namespace POE_Rich_Mtk_Asiphe_Louw
             get { return exit; }
         }
 
-        public Level(int width, int height, HeroTile hero = null)
+        public Level(int width, int height, HeroTile hero = null)   //Level constructor with width taking the Y variable and Heiht taking the X variable
         {
             this.width = width;
             this.height = height;
             tiles = new Tile[width, height];
             random = new Random();
 
-            InitialiseTiles();
+            InitialiseTiles();                                      //Calls method to initialise the level
 
             Position heroPosition = GetRandomEmptyPosition();
 
@@ -55,7 +55,7 @@ namespace POE_Rich_Mtk_Asiphe_Louw
             this.hero.UpdateVision(this);
         }
 
-        private enum TileType
+        private enum TileType             //Enum to dictate the tiletype, such as Empty, Wall, Hero and Exit
         {
             Empty,
             Wall,
@@ -63,11 +63,11 @@ namespace POE_Rich_Mtk_Asiphe_Louw
             Exit
         }
 
-        private Tile CreateTile(TileType tileType, Position position)
+        private Tile CreateTile(TileType tileType, Position position)   //Method to create tiles, by figuring out which tile type to make and creating a new tile class with the given position and tiletype
         {
             Tile tile;
 
-            switch (tileType)
+            switch (tileType)           //Switch that changes dependeant on the sent Enum
             {
                 case TileType.Empty:
                     tile = new EmptyTile(position);
@@ -86,10 +86,10 @@ namespace POE_Rich_Mtk_Asiphe_Louw
             }
 
             tiles[position.X, position.Y] = tile;
-            return tile;
+            return tile;                //Returns created tile
         }
 
-        private void InitialiseTiles()
+        private void InitialiseTiles()  //Method to initialize map with empty tiles
         {
             for (int y = 0; y < height; y++)
             {
