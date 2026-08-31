@@ -12,7 +12,7 @@ namespace POE_Rich_Mtk_Asiphe_Louw
         private ExitTile exit;
         private Random random;
 
-        public Tile[,] Tiles
+        public Tile[,] Tiles                    //Constructor for tile array
         {
             get { return tiles; }
         }

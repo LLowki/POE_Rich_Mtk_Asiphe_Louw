@@ -19,24 +19,39 @@ namespace POE_Rich_Mtk_Asiphe_Louw
         private void InitializeComponent()
         {
             this.lblDisplay = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lblDisplay
             // 
-            this.lblDisplay.AutoSize = false;
             this.lblDisplay.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDisplay.Location = new System.Drawing.Point(12, 12);
+            this.lblDisplay.Location = new System.Drawing.Point(16, 15);
+            this.lblDisplay.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblDisplay.Name = "lblDisplay";
-            this.lblDisplay.Size = new System.Drawing.Size(420, 450);
+            this.lblDisplay.Size = new System.Drawing.Size(560, 554);
             this.lblDisplay.TabIndex = 0;
+            // 
+            // label1
+            // 
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.label1.Location = new System.Drawing.Point(382, 171);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(194, 388);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "Use:\r\n w\r\n a s d\r\n↑\r\n← ↓ →\r\nTo move:\r\nup\r\nleft down right\r\n\r\nPlayer:\r\nAlive:     " +
+    "Dead:\r\n▼       X\r\n\r\nExit:\r\n░";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(444, 474);
+            this.ClientSize = new System.Drawing.Size(592, 583);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.lblDisplay);
             this.KeyPreview = true;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Text Adventure Game";
@@ -48,5 +63,6 @@ namespace POE_Rich_Mtk_Asiphe_Louw
         #endregion
 
         private System.Windows.Forms.Label lblDisplay;
+        private System.Windows.Forms.Label label1;
     }
 }
